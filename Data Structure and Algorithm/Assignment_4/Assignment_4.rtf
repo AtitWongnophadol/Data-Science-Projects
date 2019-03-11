@@ -1,0 +1,26 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww20240\viewh13540\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs24 \cf0 1. Postfix Expressions
+\b0 \
+\
+This problem is adapted from C-6.22 in the textbook.\
+\
+Postfix notation is an alternate format for writing mathematical expressions.  If op is an operator, and exp1 and exp2 are expressions, instead of writing exp1 op exp2, we would write exp1 exp2 op.  Instead of writing 2 + 3, we would write 2 3 +.  \
+\
+An interesting feature of this notation is that no parentheses are needed to communicate the order of operations, because there is only one order consistent with each expression.  As an example, the mathematical expression ((5 + 2) * (8 - 3)) / 4 would be written 5 2 + 8 3 - * 4 / in postfix notation.\
+\
+Write a script to evaluate postfix expressions involving numbers and the four operators +,-,*, and /.  Your solution should be based on a single stack (either array-based or link-based) and you should not use recursive function calls.\
+\
+You may want to import the operator module, which provides the following methods corresponding to basic mathematical operators: operator.add, operator.sub, operator.mul, operator.truediv.  For example, if you set f equal to operator.add, you can find the sum of exp1 and exp2 using f(exp1, exp2).\
+\
+\pard\pardeftab720\sa240
+
+\b \cf0 \expnd0\expndtw0\kerning0
+Submission 
+\b0 \expnd0\expndtw0\kerning0
+\
+Submit your program as \'93postfix.py\'94. In the main method of your script, you should read a list of input postfix expressions from \'93input.txt\'94 (each line contains one expression) and then generate an \'93output.txt\'94 file, in which the computed values of each expression are listed accordingly. We have attached examples of input and output files for you to test your codes before submission. Since your programs may be tested using an auto-grader system, your code must replicate the given output.txt file exactly. In addition, please follow best coding practices to make your code easy to understand. }

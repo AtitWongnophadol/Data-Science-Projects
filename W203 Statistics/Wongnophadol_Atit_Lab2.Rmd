@@ -1,0 +1,111 @@
+---
+title: 'Lab 2: Probability Theory'
+output:
+  html_document:
+    df_print: paged
+subtitle: 'R script for question 4e to 4i'
+header-includes: \usepackage{amsmath} \newcommand{\var}{\mathrm{var}}
+---
+
+
+# 4. Circles, Random Samples, and the Central Limit Theorem
+
+##e. Now let $n=100$.  Use R to simulate a draw for $X_1, X_2,...,X_n$ and $Y_1,Y_2,...,Y_n$.  Calculate the resulting values for $D_1, D_2,...D_n$.  Create a plot to visualize your draws, with $X$ on one axis and $Y$ on the other.  We suggest using a command like the following to assign a different color to each point, based on whether it falls inside the unit circle or outside it.  Note that we pass $d+1$ instead of $d$ into the color argument because 0 corresponds to the color white.
+
+```{r}
+
+# (Atit) Answer to question 4e:
+
+# Set the number of simulation
+n <- 100
+
+
+# Generate random draws from a uniform distribution with range [-1,1]
+# for both the r.v. X and the r.v. Y.
+x <- runif(n, min=-1, max=1)
+y <- runif(n, min=-1, max=1)
+
+
+# Calculate the r.v. D.
+d <- ifelse((x^2 + y^2) < 1, 1, 0)
+
+
+# Plot X, Y, and D
+plot(x,y, col=d+1, asp=1)
+```
+
+
+
+##f. What value do you get for the sample average, $\bar{D}$?  How does it compare to your answer for part a?
+
+###(Atit) Answer to question  4f:
+
+###The sample average, $\bar{D}$ is:
+
+```{r}
+# Calculate mean of D
+mean(d)
+```
+
+###The expected value of D from 4a is pi/4:
+
+```{r}
+# Calculate mean of D
+pi/4
+```
+
+###The value is a bit different.
+
+
+##g. Now use R to replicate the previous experiment 10,000 times, generating a sample average of the $D_i$ each time.  Plot a histogram of the sample averages.
+
+```{r}
+
+#####################################################################
+# Setup a function to generate a vector of D
+
+simulate_d = function(n){
+  
+# Generate random draws from a uniform distribution with range [-1,1]
+# for both the r.v. X and the r.v. Y.
+x <- runif(n, min=-1, max=1)
+y <- runif(n, min=-1, max=1)
+
+
+# Calculate the r.v. D.
+sim_d <- ifelse((x^2 + y^2) < 1, 1, 0)
+
+return(sim_d)
+}
+
+rep_d <- replicate(100000,mean(simulate_d(n)))
+
+
+# Plot the histogram of the simulated sample means
+hist(rep_d, breaks = 50, main = "Simulated Sample Means from Repeated Sampling",
+     xlab = "sample mean")
+     
+```
+
+
+##h. Compute the standard deviation of your sample averages to see if it's close to the value you expect from part c.
+
+###(Atit) Answer to question  4h:
+
+```{r}
+# Compute standard deviation of the sample averages:
+sd(rep_d)
+```
+
+###This value is close the what is computed in 4c which was ~ 0.4105 / sqrt(100) = 0.04105.
+
+##i. Compute the fraction of your sample averages that are larger that $3/4$ to see if it's close to the value you expect from part d.
+
+###(Atit) Answer to question  4i:
+
+```{r}
+# Compute the fraction of thhe sample averages that are larger than 3/4:
+sum(rep_d[rep_d > 0.75])/sum(rep_d)
+```
+
+###This value is close the what is computed in 4d which was 0.8057.
